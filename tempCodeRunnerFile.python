@@ -1,0 +1,26 @@
+import pandas as pd
+from tabulate import tabulate
+from IPython.display import display, HTML
+
+# Create a DataFrame with enhanced protocol details
+protocol_data = {
+    'Protocol': ['TCP', 'HTTP', 'DNS'],
+    'Normal Packet Size (Bytes)': [500, 1000, 512],
+    'Encrypted Packet Size (Bytes)': [640, 1300, 650],
+    'Encryption Overhead (%)': [28, 30, 27],
+    'Data Storage Capacity (Bytes)': [140, 300, 138],
+    'Success Rate (%)': [95, 90, 85],
+    'Failure Rate (%)': [5, 10, 15]
+}
+
+# Create a DataFrame from the dictionary
+df = pd.DataFrame(protocol_data)
+
+# Print the DataFrame as an HTML table for better visualization in Google Colab
+display(HTML(tabulate(df, headers='keys', tablefmt='html')))
+
+# Save the table as an Excel file for further reference
+file_path = '/content/enhanced_protocol_analysis_table.xlsx'
+df.to_excel(file_path, index=False)
+
+print(f"\nTable saved as an Excel file at: {file_path}")
